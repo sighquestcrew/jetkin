@@ -1,39 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Demo Website</title>
-    <style>
-        body {
-            background: #0f172a;
-            color: #e5e7eb;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 120px;
-        }
-        h1 {
-            color: #38bdf8;
-            font-size: 48px;
-        }
-        p {
-            font-size: 20px;
-        }
-        .box {
-            margin: auto;
-            width: 50%;
-            padding: 30px;
-            border-radius: 12px;
-            background: #020617;
-            box-shadow: 0 0 20px #38bdf8;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>DevOps Demo Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+    }
+
+    header {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #00e5ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 16px;
+      background: #00e5ff;
+      color: #000;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="box">
-        <h1>🚀 Demo Website</h1>
-        <p>Deployed using <b>Ansible</b> & <b>Jenkins</b></p>
-        <p>Server is up and running ✅</p>
-        <p>By <b>Shubham</b></p>
+
+  <header>
+    <h1>🚀 DevOps Demo Website</h1>
+    <p>Deployed using Jenkins + Ansible Automation</p>
+    <span class="badge">CI/CD Pipeline Active</span>
+  </header>
+
+  <div class="container">
+    <div class="cards">
+
+      <div class="card">
+        <h3>⚙️ Jenkins</h3>
+        <p>
+          Automated build and deployment triggered directly from GitHub.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>📦 Ansible</h3>
+        <p>
+          Configuration management and application deployment to target servers.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🌐 Apache Web Server</h3>
+        <p>
+          Serving this website on a Linux target server via automation.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🔐 SSH & Security</h3>
+        <p>
+          Passwordless SSH and secure automation best practices implemented.
+        </p>
+      </div>
+
     </div>
+  </div>
+
+  <footer>
+    © 2026 | Created by Shubham | DevOps Automation Demo
+  </footer>
+
 </body>
 </html>
