@@ -2,125 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DevOps Demo Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>DevOps Cheat Sheet | Jenkins + Ansible</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
+      padding: 0;
+      line-height: 1.6;
     }
-
     header {
-      padding: 60px 20px;
+      background: #0d6efd;
+      color: white;
+      padding: 20px;
       text-align: center;
     }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
+    section {
+      background: white;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
+    h2 {
+      color: #0d6efd;
     }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
+    ul {
+      margin-left: 20px;
     }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    code {
+      background: #eee;
+      padding: 4px 6px;
+      border-radius: 4px;
     }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: #00e5ff;
-    }
-
     footer {
       text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.3);
-      font-size: 0.9rem;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 8px 16px;
-      background: #00e5ff;
-      color: #000;
-      border-radius: 20px;
-      font-weight: bold;
+      padding: 10px;
+      background: #222;
+      color: white;
     }
   </style>
 </head>
-
 <body>
 
-  <header>
-    <h1>🚀 DevOps Demo Website</h1>
-    <p>Deployed using Jenkins + Ansible Automation</p>
-    <span class="badge">CI/CD Pipeline Active</span>
-  </header>
+<header>
+  <h1>🚀 DevOps Cheat Sheet</h1>
+  <p>Jenkins + Ansible + Git Automation</p>
+</header>
 
-  <div class="container">
-    <div class="cards">
+<section>
+  <h2>📌 Project Overview</h2>
+  <p>
+    This project demonstrates CI/CD automation using:
+  </p>
+  <ul>
+    <li>GitHub for source code</li>
+    <li>Jenkins for CI/CD</li>
+    <li>Ansible for configuration & deployment</li>
+    <li>Apache Web Server</li>
+  </ul>
+</section>
 
-      <div class="card">
-        <h3>⚙️ Jenkins</h3>
-        <p>
-          Automated build and deployment triggered directly from GitHub.
-        </p>
-      </div>
+<section>
+  <h2>❌ Common Problems & Solutions</h2>
 
-      <div class="card">
-        <h3>📦 Ansible</h3>
-        <p>
-          Configuration management and application deployment to target servers.
-        </p>
-      </div>
+  <h3>1. No hosts matched</h3>
+  <p><strong>Problem:</strong></p>
+  <code>skipping: no hosts matched</code>
 
-      <div class="card">
-        <h3>🌐 Apache Web Server</h3>
-        <p>
-          Serving this website on a Linux target server via automation.
-        </p>
-      </div>
+  <p><strong>Solution:</strong></p>
+  <ul>
+    <li>Create inventory file</li>
+    <li>Use correct host group</li>
+    <li>Pass inventory with <code>-i</code></li>
+  </ul>
 
-      <div class="card">
-        <h3>🔐 SSH & Security</h3>
-        <p>
-          Passwordless SSH and secure automation best practices implemented.
-        </p>
-      </div>
+  <code>
+    ansible-playbook -i inventory playbook.yml
+  </code>
 
-    </div>
-  </div>
+  <hr>
 
-  <footer>
-    © 2026 | Created by Shubham | DevOps Automation Demo
-  </footer>
+  <h3>2. Permission denied (publickey,password)</h3>
+  <p><strong>Problem:</strong> SSH authentication fails</p>
+
+  <p><strong>Solution:</strong></p>
+  <ul>
+    <li>Generate SSH key for Jenkins</li>
+    <li>Copy key to target server</li>
+  </ul>
+
+  <code>
+    ssh-keygen<br>
+    ssh-copy-id user@server
+  </code>
+
+  <hr>
+
+  <h3>3. sudo password required</h3>
+  <p><strong>Problem:</strong> Ansible fails during sudo tasks</p>
+
+  <p><strong>Solution:</strong></p>
+  <ul>
+    <li>Disable fact gathering OR</li>
+    <li>Enable passwordless sudo</li>
+  </ul>
+
+  <code>
+    shubham ALL=(ALL) NOPASSWD:ALL
+  </code>
+
+</section>
+
+<section>
+  <h2>⚙ Jenkins Tips</h2>
+  <ul>
+    <li>Prefer <strong>Execute Shell</strong> over Ansible plugin</li>
+    <li>Always specify inventory path</li>
+    <li>Keep Ansible playbooks outside Jenkins workspace</li>
+    <li>Use GitHub webhooks for auto deployment</li>
+  </ul>
+</section>
+
+<section>
+  <h2>🛠 Ansible Best Practices</h2>
+  <ul>
+    <li>Use roles for scalability</li>
+    <li>Avoid hardcoding IPs in playbooks</li>
+    <li>Test with <code>ansible -m ping</code> first</li>
+    <li>Use idempotent tasks</li>
+  </ul>
+</section>
+
+<section>
+  <h2>🔥 CI/CD Flow</h2>
+  <ol>
+    <li>Code pushed to GitHub</li>
+    <li>Jenkins job triggered</li>
+    <li>Git repository cloned</li>
+    <li>Ansible deploys website</li>
+    <li>Apache restarted automatically</li>
+  </ol>
+</section>
+
+<footer>
+  <p>👨‍💻 Created by Shubham | DevOps Practice Project</p>
+</footer>
 
 </body>
 </html>
