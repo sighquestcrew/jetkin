@@ -1,167 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>DevOps Cheat Sheet | Jenkins & Ansible</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>DevOps CI/CD Documentation | Jenkins + Ansible</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --accent: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+    }
 
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
-  color: #fff;
-}
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-/* HEADER */
-header {
-  padding: 60px 20px;
-  text-align: center;
-}
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg, #020617, #020617);
+      color: var(--text);
+      display: flex;
+    }
 
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
+    /* Sidebar */
+    nav {
+      width: 260px;
+      height: 100vh;
+      position: fixed;
+      background: #020617;
+      border-right: 1px solid #1e293b;
+      padding: 20px;
+      overflow-y: auto;
+    }
 
-header p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-}
+    nav h2 {
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
 
-/* GRID */
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  padding: 40px;
-}
+    nav a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 14px;
+    }
 
-/* 3D CARD */
-.card {
-  background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-}
+    nav a:hover {
+      color: var(--accent);
+    }
 
-.card:hover {
-  transform: rotateY(15deg) rotateX(8deg) scale(1.05);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-}
+    /* Main */
+    main {
+      margin-left: 260px;
+      padding: 40px;
+      max-width: 1200px;
+    }
 
-.card h2 {
-  color: #4fd1c5;
-  margin-bottom: 15px;
-}
+    section {
+      margin-bottom: 60px;
+    }
 
-.card ul {
-  margin-left: 18px;
-}
+    h1, h2, h3 {
+      color: var(--accent);
+    }
 
-.card li {
-  margin-bottom: 8px;
-}
+    p, li {
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-code {
-  background: #000;
-  padding: 5px 8px;
-  border-radius: 5px;
-  display: inline-block;
-  margin-top: 6px;
-  font-size: 0.9rem;
-  color: #00ffcc;
-}
+    code {
+      background: #020617;
+      padding: 3px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+    }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.8;
-}
-</style>
+    pre {
+      background: #020617;
+      padding: 15px;
+      border-radius: 10px;
+      overflow-x: auto;
+      border: 1px solid #1e293b;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 18px;
+      margin: 20px 0;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: rotateX(6deg) rotateY(-6deg) scale(1.02);
+    }
+
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--muted);
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🚀 DevOps Cheat Sheet</h1>
-  <p>Jenkins • Ansible • Git • CI/CD Automation</p>
-</header>
+<nav>
+  <h2>📘 DevOps Docs</h2>
+  <a href="#intro">Introduction</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#components">Components</a>
+  <a href="#inventory">Inventory</a>
+  <a href="#playbook">Ansible Playbook</a>
+  <a href="#jenkins">Jenkins Pipeline</a>
+  <a href="#problems">Problems & Fixes</a>
+  <a href="#cheatsheet">Cheat Sheet</a>
+  <a href="#best">Best Practices</a>
+  <a href="#conclusion">Conclusion</a>
+</nav>
 
-<div class="container">
+<main>
 
+<section id="intro">
+  <h1>CI/CD Automation Documentation</h1>
   <div class="card">
-    <h2>📌 Project Overview</h2>
+    <p>
+      This project implements a real-world <b>CI/CD pipeline</b> using
+      <b>Jenkins, Ansible, GitHub, and Apache</b>.
+      Any code pushed to GitHub is automatically deployed to the target server
+      without manual intervention.
+    </p>
+  </div>
+</section>
+
+<section id="architecture">
+  <h2>System Architecture</h2>
+  <div class="card">
+    <pre>
+Developer → GitHub → Jenkins (Ansible) → Target Server (Apache)
+    </pre>
+    <p>
+      Jenkins acts as the automation engine while Ansible performs
+      configuration and deployment on the target node.
+    </p>
+  </div>
+</section>
+
+<section id="components">
+  <h2>Components Used</h2>
+  <div class="card">
     <ul>
-      <li>GitHub → Jenkins → Ansible</li>
-      <li>Automated Web Deployment</li>
-      <li>Apache Web Server</li>
+      <li><b>Jenkins:</b> CI/CD automation server</li>
+      <li><b>Ansible:</b> Agentless configuration management</li>
+      <li><b>GitHub:</b> Source code management</li>
+      <li><b>Apache:</b> Web server on target node</li>
     </ul>
   </div>
+</section>
 
+<section id="inventory">
+  <h2>Ansible Inventory</h2>
   <div class="card">
-    <h2>❌ Common Errors</h2>
+    <pre>
+[web]
+192.168.107.139 ansible_user=shubham
+    </pre>
+    <p>
+      Inventory defines which hosts Ansible manages.
+      Without inventory, Ansible defaults to localhost.
+    </p>
+  </div>
+</section>
+
+<section id="playbook">
+  <h2>Ansible Playbook</h2>
+  <div class="card">
+    <pre>
+- hosts: web
+  become: yes
+  tasks:
+    - copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+    - service:
+        name: apache2
+        state: restarted
+    </pre>
+    <p>
+      This playbook deploys website code and restarts Apache automatically.
+    </p>
+  </div>
+</section>
+
+<section id="jenkins">
+  <h2>Jenkins Job</h2>
+  <div class="card">
+    <pre>
+ansible-playbook \
+-i /var/lib/jenkins/Ansible/inventory \
+webserver_update.yml
+    </pre>
+    <p>
+      Jenkins pulls code from GitHub and executes Ansible for deployment.
+    </p>
+  </div>
+</section>
+
+<section id="problems">
+  <h2>Problems Faced & Solutions</h2>
+  <div class="card">
     <ul>
-      <li>No hosts matched</li>
-      <li>Permission denied (SSH)</li>
-      <li>Sudo password required</li>
-      <li>Inventory not parsed</li>
+      <li><b>No hosts matched:</b> Inventory not passed → fixed with <code>-i inventory</code></li>
+      <li><b>sudo password error:</b> Enabled passwordless sudo</li>
+      <li><b>SSH failed:</b> Implemented SSH key authentication</li>
+      <li><b>Permission denied:</b> Fixed ownership for Jenkins user</li>
     </ul>
   </div>
+</section>
 
+<section id="cheatsheet">
+  <h2>DevOps Cheat Sheet</h2>
   <div class="card">
-    <h2>✅ Fixes & Solutions</h2>
-    <ul>
-      <li>Create inventory correctly</li>
-      <li>SSH key-based login</li>
-      <li>Passwordless sudo</li>
-    </ul>
-    <code>ssh-copy-id user@server</code>
+    <pre>
+ansible web -m ping -i inventory
+ansible-playbook playbook.yml --check
+ansible-playbook playbook.yml --syntax-check
+    </pre>
   </div>
+</section>
 
+<section id="best">
+  <h2>Best Practices</h2>
   <div class="card">
-    <h2>⚙ Jenkins Tips</h2>
     <ul>
-      <li>Use Execute Shell</li>
-      <li>Always pass inventory</li>
-      <li>Use Webhooks</li>
-      <li>Keep jobs simple</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>🛠 Ansible Best Practices</h2>
-    <ul>
-      <li>Test with ping module</li>
-      <li>Avoid hardcoded IPs</li>
-      <li>Use roles</li>
-      <li>Idempotent tasks</li>
+      <li>Always use SSH keys</li>
+      <li>Never hardcode passwords</li>
+      <li>Use roles for scalability</li>
+      <li>Test playbooks before production</li>
     </ul>
   </div>
+</section>
 
+<section id="conclusion">
+  <h2>Conclusion</h2>
   <div class="card">
-    <h2>🔥 CI/CD Flow</h2>
-    <ul>
-      <li>Code Push</li>
-      <li>Jenkins Trigger</li>
-      <li>Ansible Deploy</li>
-      <li>Apache Restart</li>
-    </ul>
+    <p>
+      This project demonstrates a production-ready DevOps CI/CD pipeline.
+      It follows industry standards and solves real automation challenges.
+    </p>
   </div>
-
-</div>
+</section>
 
 <footer>
-  👨‍💻 Created by Shubham | DevOps Portfolio Project
+  <p>© 2026 DevOps CI/CD Project | Jenkins & Ansible</p>
 </footer>
+
+</main>
 
 </body>
 </html>
